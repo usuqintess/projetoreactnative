@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GITHUB_CREDENTIALS = credentials('github-token')
+        GITHUB_CREDENTIALS = credentials('github-ssh-key2')
     }
     stages {
         stage('Checkout') {
