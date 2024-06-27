@@ -29,12 +29,12 @@ pipeline {
             junit 'reports/**/*.xml'
         }
         success {
-            mail to: 're047197@qintess.com',
+            mail to: 'edson.junior@qintess.com',
                  subject: "Successful Build: ${env.JOB_NAME} ${env.BUILD_NUMBER}",
                  body: "The build was successful!"
         }
         failure {
-            mail to: 're047197@qintess.com',
+            mail to: 'edson.junior@qintess.com',
                  subject: "Failed Build: ${env.JOB_NAME} ${env.BUILD_NUMBER}",
                  body: "The build failed. Please check the logs."
         }
