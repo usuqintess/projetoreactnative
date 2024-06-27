@@ -1,12 +1,12 @@
 pipeline {
     agent any
     environment {
-        GITHUB_CREDENTIALS = credentials('github-ssh-key')
+        GITHUB_TOKEN = credentials('github-pat')
     }
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/usuqintess/projetoreactnative.git', credentialsId: "${env.GITHUB_CREDENTIALS}"
+                git url: 'https://github.com/usuqintess/projetoreactnative.git', credentialsId: "${env.GITHUB_TOKEN}"
             }
         }
         stage('Build') {
