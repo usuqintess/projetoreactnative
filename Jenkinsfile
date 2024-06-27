@@ -6,7 +6,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/usuqintess/projetoreactnative.git', credentialsId: "${env.GITHUB_TOKEN}"
+                script {
+                    git url: 'https://github.com/usuqintess/projetoreactnative.git', 
+                        branch: 'main', 
+                        credentialsId: "${env.GITHUB_TOKEN}"
+                }
             }
         }
         stage('Build') {
@@ -14,16 +18,20 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Test') {
+          stage('Test') {
             steps {
-                bat 'npm test'
+                bat 'npm test -- --ci --reporters=jest-junit'
+            }
+        }
+          stage('Archive Test Results') {
+            steps {
+                junit 'jest-junit.xml'
             }
         }
     }
     post {
-        always {
+         always {
             archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-            junit 'reports/**/*.xml'
         }
         success {
             mail to: 'edson.junior@qintess.com',
