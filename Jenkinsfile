@@ -1,10 +1,8 @@
 pipeline {
     agent any
-
     environment {
         GITHUB_CREDENTIALS = credentials('github-token')
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +20,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
