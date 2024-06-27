@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/usuqintess/projetoreactnative.git', credentialsId: "${env.GITHUB_CREDENTIALS}"
+                git url: 'git@github.com:usuqintess/projetoreactnative.git', credentialsId: "${env.GITHUB_CREDENTIALS}"
             }
         }
         stage('Build') {
